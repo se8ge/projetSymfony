@@ -1,0 +1,249 @@
+/* Global Styles */
+body {
+    font-family: 'advent pro', 'sans-serif';
+    padding: 0;
+    margin: 0;
+    line-height: 1.5; /* ajusté pour améliorer la lisibilité */
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+/* Nav Styles */
+nav {
+    overflow: visible;  /* Permet d'afficher correctement la barre de navigation */
+    background-color: #FFFAE1;
+    position: fixed;
+    width: 100%;
+    top: 0;  /* Fixe la barre tout en haut */
+    left: 0;
+    z-index: 1000;  /* Assure que la barre reste au-dessus des autres éléments */
+    opacity: 0.9;
+    padding: 10px 0;  /* Ajoute un peu d'espace au-dessus et en dessous de la barre */
+}
+
+header li {
+    float: right;
+    font-size: 1.2em;
+}
+
+header li a {
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    padding: 18px 20px;
+}
+#logo{
+	font-family: 'Dancing Script';
+	font-weight:bold;
+	float:left;
+	text-shadow: 1px 3px 3px black;
+}
+
+/* Ajout de marge en haut pour dissocier le contenu de la barre */
+body {
+    margin-top: 100px; /* Cela crée un espace sous la barre de navigation */
+}
+
+/* Section Présentation */
+.container {
+    flex: 1;
+    text-align: center;
+    width: 80vw;
+    margin: 0 auto;
+}
+
+.presentation h2 {
+    padding: 22px 0;
+    font-size: 45px;
+    border-bottom: 1px solid #fff;
+}
+
+.presentation p {
+    opacity: 0.7;
+    font-size: 20px;
+    margin: 45px auto;
+    width: 60vw;
+}
+
+/************************************/
+.articles-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.articles-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.article-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.article-card img {
+    width: 100%;
+    height: auto;
+}
+
+.article-content {
+    padding: 20px;
+}
+
+.article-content h3 {
+    margin-top: 0;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #0077cc;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.read-more:hover {
+    background-color: #005fa3;
+}
+
+/****************************************Contacts***************************/
+.contact-section {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #444;
+}
+
+.form-control {
+    width: 100%;
+    padding: 14px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border 0.3s;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.btn-submit {
+    display: block;
+    margin: 30px auto 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+/**************************************FOOTER******************************/
+footer {
+    padding: 40px 20px;
+    text-align: center;
+    color: black;
+    font-size: 1rem;
+}
+
+footer a {
+    color: black; /* Bleu sympa */
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/***********************************************Blog***************************/
+.blog-page {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.blog-article {
+    background: #f4f4f4;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.blog-article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.blog-article h2 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.blog-article p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 15px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.read-more:hover {
+    color: #0056b3;
+}
+

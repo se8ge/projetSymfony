@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<header>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+        
+    <nav>
+        <ul>
+            <li><a href="{{ path('app_blog') }}">BLOG</a></li>
+            <li><a href="{{ path('app_contact') }}">CONTACT</a></li>
+            <li><a href="{{ path('app_home') }}">ACCUEIL</a></li>
+            <li id="logo"> <img src="{{ asset('images/logo.jpg') }}"  style="height: 50px;"> </li>
+            
+            {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('app_admin_dashboard') }}">ADMIN</a></li>
+            {% endif %}
+
+            {% if not app.user %}
+            <li><a href="{{ path('app_login') }}">CONNEXION</a></li>
+             {% else %}
+            <li><a href="{{ path('app_logout') }}">DECONNEXION</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+<div class="container my-5">
+    <!-- Section de présentation du blog -->
+    <section id="presentation" class="text-center mb-5">
+        <h2>Bienvenue sur mon blog de jeu vidéo!</h2>
+        <p>
+            Ce blog est dédié à partager mes réflexions, des conseils et des articles autour de ma passion pour les jeux vidéo. 
+            Vous y trouverez des critiques de jeux, des guides, des réflexions sur l'industrie du jeu vidéo et bien plus encore!
+        </p>
+    </section>
+
+    <!-- Section article ajoutés -->
+    <h2>Mes derniers articles</h2>
+    <div class="articles">
+        {% for article in articles %}
+            <div class="article">
+                {% if article.image %}
+                    <img src="{{ asset('images/' ~ article.image) }}" alt="{{ article.title }}" style="max-width: 300px;">
+                {% else %}
+                    <p>Aucune image disponible</p>
+                {% endif %}
+    
+                <h3>{{ article.title }}</h3>
+                <p>
+                    {{ article.description|length > 300 ? article.description[:300] ~ '...' : article.description }}
+                </p>
+                
+            </div>
+        {% else %}
+            <p>Aucun article trouvé.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Section sur le client et sa passion pour les jeux vidéo -->
+    <section id="passion" class="text-center">
+        <h2>À propos de moi</h2>
+        <p>
+            Je suis un passionné de jeux vidéo depuis mon plus jeune âge. 
+            À travers ce blog, je souhaite partager avec vous mes expériences, mes avis et mes réflexions sur ce secteur qui m'inspire chaque jour.
+        </p>
+        <p>
+            Les jeux vidéo sont bien plus qu'un simple loisir pour moi. Ils représentent une manière d'explorer de nouveaux mondes, de découvrir des histoires fascinantes, et de développer des compétences en résolution de problèmes et en créativité.
+        </p>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2025 Mon Blog Jeux Vidéo | <a href="{{ path('app_mentions_legales') }}">Mentions légales</a> | <a href="{{ path('app_politique_confidentialite') }}">Politique de confidentialité</a></p>
+</footer>
+
+{% endblock %}

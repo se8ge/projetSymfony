@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block body %}
+    <h1>Article</h1>
+
+    <table>
+        <tbody>
+            
+            <tr>
+                <th>Titre</th>
+                <td>{{ article.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ article.description }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ article.createdAt|date('d/m/Y') }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>
+                    <img src="{{ asset('images/' ~ article.image) }}" alt="{{ article.title }}" style="height: 150px;">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+
+    <a href="{{ path('app_blog') }}">Retour au blog</a>
+
+{% endblock %}

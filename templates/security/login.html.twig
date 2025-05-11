@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+<header>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+        
+    <nav>
+        <ul>
+            <li><a href="{{ path('app_blog') }}">BLOG</a></li>
+            <li><a href="{{ path('app_contact') }}">CONTACT</a></li>
+            <li><a href="{{ path('app_home') }}">ACCUEIL</a></li>
+            <li id="logo"> <img src="{{ asset('images/logo.jpg') }}"  style="height: 50px;"> </li>
+            
+            {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('app_admin_dashboard') }}">ADMIN</a></li>
+            {% endif %}
+
+            {% if not app.user %}
+            <li><a href="{{ path('app_login') }}">CONNEXION</a></li>
+             {% else %}
+            <li><a href="{{ path('app_logout') }}">DECONNEXION</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+    <div class="container mt-5">
+        <h1 class="h3 mb-3 font-weight-normal text-center">Veuillez vous connecter</h1>
+
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="alert alert-info">
+                Vous êtes connecté en tant que {{ app.user.userIdentifier }}. <a href="{{ path('app_logout') }}">Se déconnecter</a>
+            </div>
+        {% endif %}
+
+        <form method="post">
+            <div class="mb-3">
+                <label for="inputEmail" class="form-label">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            </div>
+
+            <div class="mb-3">
+                <label for="inputPassword" class="form-label">Mot de passe</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input type="checkbox" name="_remember_me" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
+            </div>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <button class="btn btn-lg btn-primary w-100" type="submit">
+                Se connecter
+            </button>
+        </form>
+    </div>
+{% endblock %}
+

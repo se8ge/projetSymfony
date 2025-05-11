@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block body %}
+
+<header>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+        
+    <nav>
+        <ul>
+            <li><a href="{{ path('app_blog') }}">BLOG</a></li>
+            <li><a href="{{ path('app_contact') }}">CONTACT</a></li>
+            <li><a href="{{ path('app_home') }}">ACCUEIL</a></li>
+            <li id="logo"> <img src="{{ asset('images/logo.jpg') }}"  style="height: 50px;"> </li>
+            
+            {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('app_admin_dashboard') }}">ADMIN</a></li>
+            {% endif %}
+
+            {% if not app.user %}
+            <li><a href="{{ path('app_login') }}">CONNEXION</a></li>
+             {% else %}
+            <li><a href="{{ path('app_logout') }}">DECONNEXION</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+    <div class="container">
+        <h1>Tableau de bord de l'administration</h1>
+
+        {# Tu peux supprimer le bouton ou le laisser pour une route "ajouter un article" par ex. #}
+        <a href="{{ path('app_admin_new') }}" class="btn btn-success mb-3">Ajouter un article</a>
+        
+
+
+        {% if articles is not empty %}
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Titre</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for article in articles %}
+                        <tr>
+                            <td>{{ article.id }}</td>
+                            <td>{{ article.title }}</td>
+                            <td>{{ article.createdAt ? article.createdAt|date('d/m/Y') : '–' }}</td>
+                            <td>
+                                <a href="{{ path('app_admin_edit', { id: article.id }) }}" class="btn btn-warning">✏️ Modifier</a>
+                                <a href="admin/{id}/delete">🗑️ Supprimer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Aucun article pour le moment.</p>
+        {% endif %}
+    </div>
+{% endblock %}
+

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BlogController!{% endblock %}
+
+{% block body %}
+<header>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    
+        
+    <nav>
+        <ul>
+            <li><a href="{{ path('app_blog') }}">BLOG</a></li>
+            <li><a href="{{ path('app_contact') }}">CONTACT</a></li>
+            <li><a href="{{ path('app_home') }}">ACCUEIL</a></li>
+            <li id="logo"> <img src="{{ asset('images/logo.jpg') }}" style="height: 50px;"> </li>
+            
+            
+            {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('app_admin_dashboard') }}">CONNEXION</a></li>
+        {% endif %}
+        </ul>
+    </nav>
+</header>
+
+<div class="container blog-page">
+    <h1 class="text-center">Articles du Blog</h1>
+
+    {% for article in articles %}
+        <div class="blog-article">
+            {% if article.image %}
+                <img src="{{ asset('images/' ~ article.image) }}" alt="{{ article.title }}">
+            {% endif %}
+
+            <h2>{{ article.title }}</h2>
+            <p>{{ article.description|raw }}</p>
+
+            <a href="{{ path('app_article_show', {'id': article.id}) }}" class="read-more">Lire plus</a>
+        </div>
+    {% else %}
+        <p>Aucun article publié pour le moment.</p>
+    {% endfor %}
+</div>
+
+<footer>
+    <p>&copy; 2025 Mon Blog Jeux Vidéo | <a href="{{ path('app_mentions_legales') }}">Mentions légales</a> | <a href="{{ path('app_politique_confidentialite') }}">Politique de confidentialité</a></p>
+</footer>
+{% endblock %}
